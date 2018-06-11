@@ -47,6 +47,9 @@ function Snake() {
       if (d < 1) {
         this.total = 0;
         this.tail = [];
+        window.alert("Perdu!");
+        this.xspeed = 0;
+        this.yspeed = 0;
       }
     }
   }
