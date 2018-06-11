@@ -13,10 +13,11 @@ function Snake() {
     }
   }
 
-  this.eat = function(pos) {
+  this.eat = function(pos, fruit) {
     var d = dist(this.x, this.y, pos.x, pos.y);
     if (d < 1) {
       this.total++;
+      score += fruit.points;
       return true;
     }
     else {
@@ -50,6 +51,7 @@ function Snake() {
         window.alert("Perdu!");
         this.xspeed = 0;
         this.yspeed = 0;
+        score = 0;
       }
     }
   }
@@ -73,7 +75,7 @@ function Snake() {
   }
 
   this.replace = function(side) {
-    if (s.eat(food)) {
+    if (s.eat(food, fruit)) {
       fruit = pickLocation();
       s.tail[s.total - 1] = createVector(s.x, s.y);
     }

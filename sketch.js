@@ -5,6 +5,8 @@ var fruits = [];
 var food;
 var time = 4;
 
+var score = 0;
+
 
 function setup() {
   createCanvas(1110, 540);
@@ -16,10 +18,10 @@ function setup() {
   }, 1000);
   grass = loadImage("images/grass.png");
   snake = loadImage("images/snake.png");
-  cherry = loadImage("images/cherry.png");
-  orange = loadImage("images/orange.png");
-  banana = loadImage("images/banana.png");
-  raspberry = loadImage("images/raspberry.png");
+  cherry = {img: loadImage("images/cherry.png"), points: 1 };
+  orange = {img: loadImage("images/orange.png"), points: 2 };
+  banana = {img: loadImage("images/banana.png"), points: 3 };
+  raspberry = {img: loadImage("images/raspberry.png"), points: 4 };
   fruits = [banana, orange, cherry, raspberry];
   fruit = cherry;
 }
@@ -34,14 +36,20 @@ function draw() {
   rect(0, height - scl, width, scl);
   rect(0, 0, width, scl);
 
-  if (s.eat(food) || time === 0) {
+  if (s.eat(food, fruit) || time === 0) {
     fruit = pickLocation();
   }
 
   s.death();
   s.update();
   s.show();
-  image(fruit, food.x, food.y, scl, scl);
+  image(fruit.img, food.x, food.y, scl, scl);
+
+  textSize(18);
+  stroke(5);
+  strokeWeight(2);
+  noFill();
+  text(`Score: ${score}`, width - 4 * scl, height - (scl / 2));
 }
 
 function pickLocation() {
