@@ -70,9 +70,9 @@ function Snake() {
   }
 
   this.edges = function() {
-    if (this.x > width) this.x = 0;
+    if (this.x > width - scl) this.x = 0;
     if (this.x < 0) this.x = width - scl;
-    if (this.y > height) this.y = 0;
+    if (this.y > height - scl) this.y = 0;
     if (this.y < 0) this.y = height - scl;
   }
 
