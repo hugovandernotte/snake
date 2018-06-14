@@ -66,23 +66,14 @@ function Snake() {
       this.x = this.x + this.xspeed*scl;
       this.y = this.y + this.yspeed*scl;
 
-      this.x = constrain(this.x, 0, width - scl);
-      this.y = constrain(this.y, 0, height - scl);
-      side = outBorder();
-      if (side) {
-        this.replace(side);
-      }
+      this.edges();
   }
 
-  this.replace = function(side) {
-    if (s.eat(food, fruit)) {
-      fruit = pickLocation();
-      s.tail[s.total - 1] = createVector(s.x, s.y);
-    }
-    if (side === "right") this.x = Math.abs((this.x - width));
-    if (side === "left") this.x = width - 2 * scl;
-    if (side === "top") this.y = height - 2 * scl;
-    if (side === "bottom") this.y = Math.abs((this.y - height));
+  this.edges = function() {
+    if (this.x > width) this.x = 0;
+    if (this.x < 0) this.x = width - scl;
+    if (this.y > height) this.y = 0;
+    if (this.y < 0) this.y = height - scl;
   }
 
   this.show = function() {

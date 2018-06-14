@@ -16,14 +16,3 @@ waitForEl("canvas", function() {
   let scores = jQuery(".scores");
   scores.append("<h3> Best scores: </h3>")
 });
-
-var fs = require("fs");
-var fileContent = "hello";
-
-fs.writeFile("./scores.txt", fileContent, (err) => {
-    if (err) {
-        console.error(err);
-        return;
-    };
-    console.log("File has been created");
-});

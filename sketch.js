@@ -31,10 +31,6 @@ function draw() {
 
   fill (255);
   noStroke();
-  rect(width - scl, 0, scl, height);
-  rect(0, 0, scl, height);
-  rect(0, height - scl, width, scl);
-  rect(0, 0, width, scl);
 
   if (s.eat(food, fruit) || time === 0) {
     fruit = pickLocation();
@@ -53,8 +49,8 @@ function draw() {
 }
 
 function pickLocation() {
-  var cols = floor(width/scl - 1);
-  var rows = floor(height/scl - 1);
+  var cols = floor(width/scl);
+  var rows = floor(height/scl);
   food = createVector(floor(random(rows)), floor(random(rows)));
   food.mult(scl);
   while (!(s.foodNotOnSnake(food))) {
@@ -75,12 +71,4 @@ function keyPressed() {
   } else if (keyCode === LEFT_ARROW) {
     s.dir(-1, 0);
   }
-}
-
-function outBorder() {
-  if (s.x === width - scl && s.xspeed === 1) return "right";
-  if (s.x === 0 && s.xspeed === -1) return "left";
-  if (s.y === 0 && s.yspeed === -1) return "top";
-  if (s.y === height - scl && s.yspeed === 1) return "bottom";
-  return null
 }
